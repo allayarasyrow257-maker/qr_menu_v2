@@ -1,9 +1,9 @@
 {
-  "name": "gg",
-  "logo": "/uploads/1777575434878-296193021.png",
+  "name": "Creator",
+  "logo": "/uploads/1778058381431-432622432.png",
   "backgroundColor": "#963678",
-  "backgroundColorLight": "#f8f8f8",
-  "backgroundColorDark": "#0a0f1a",
-  "accentColorLight": "#53473c",
-  "accentColorDark": "#000000"
+  "backgroundColorLight": "#b33737",
+  "backgroundColorDark": "#899abd",
+  "accentColorLight": "#ba7636",
+  "accentColorDark": "#d78989"
 }

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 export interface CartItem {
+  cartItemId: string; // Unique identifier for this cart item instance
   productId: number;
   name: Record<string, string>;
   price: number;
@@ -28,6 +29,10 @@ function generateSessionId(): string {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
+}
+
+function generateCartItemId(): string {
+  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 
 function getOrCreateSessionId(tableNumber: string): string {
@@ -66,7 +71,14 @@ function saveCart(items: CartItem[], tableId: number | null) {
 function loadCart(tableId: number | null): CartItem[] {
   try {
     const stored = localStorage.getItem(getCartKey(tableId));
-    if (stored) return JSON.parse(stored);
+    if (stored) {
+      const items = JSON.parse(stored);
+      // Ensure all items have a cartItemId (for backward compatibility)
+      return items.map((item: CartItem) => ({
+        ...item,
+        cartItemId: item.cartItemId || generateCartItemId(),
+      }));
+    }
   } catch {}
   return [];
 }
@@ -182,7 +194,15 @@ export const useCartStore = create<CartState>((set, get) => ({
             : i,
         );
       } else {
-        newItems = [...state.items, { ...item, status: "active", quantity: 1 }];
+        newItems = [
+          ...state.items,
+          {
+            ...item,
+            cartItemId: generateCartItemId(),
+            status: "active",
+            quantity: 1,
+          },
+        ];
       }
       saveCart(newItems, state.tableId);
       return { items: newItems };
@@ -279,14 +299,19 @@ export const useCartStore = create<CartState>((set, get) => ({
       // Only replace items that came from backend sync previously
       const activeItems = state.items.filter((i) => i.status !== "ordered");
       const localOrderedItems = state.items.filter(
-        (i) => i.status === "ordered" && !i.fromBackend
+        (i) => i.status === "ordered" && !i.fromBackend,
       );
       // Tag incoming backend items so we can distinguish them next time
       const taggedBackendItems = orderedItems.map((i) => ({
         ...i,
+        cartItemId: i.cartItemId || generateCartItemId(),
         fromBackend: true,
       }));
-      const newItems = [...activeItems, ...localOrderedItems, ...taggedBackendItems];
+      const newItems = [
+        ...activeItems,
+        ...localOrderedItems,
+        ...taggedBackendItems,
+      ];
       const { tableId } = get();
       saveCart(newItems, tableId);
       return { items: newItems };

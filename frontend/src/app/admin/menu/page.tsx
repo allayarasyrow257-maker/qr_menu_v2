@@ -42,29 +42,29 @@ interface Category {
 // menu shows whichever icon the admin picks here; admins can also upload their
 // own (any image goes through the same /upload endpoint as product images).
 const PRESET_CATEGORY_ICONS = [
-  '/category icon/hot drink.png',
-  '/category icon/coffee.png',
-  '/category icon/cappucino.png',
-  '/category icon/tea-with-leamon.png',
-  '/category icon/cola.png',
-  '/category icon/bottle-drink.png',
-  '/category icon/bottle.png',
-  '/category icon/mohito.png',
-  '/category icon/hamburger.png',
-  '/category icon/pizza.png',
-  '/category icon/pizza-piece.png',
-  '/category icon/sandwich.png',
-  '/category icon/chicken.png',
-  '/category icon/ham.png',
-  '/category icon/fish.png',
-  '/category icon/sushi.png',
-  '/category icon/fries.png',
-  '/category icon/soup.png',
-  '/category icon/salads.png',
-  '/category icon/cake.png',
-  '/category icon/dessert.png',
-  '/category icon/ice-cream.png',
-  '/category icon/macaron.png',
+  "/category icon/hot drink.png",
+  "/category icon/coffee.png",
+  "/category icon/cappucino.png",
+  "/category icon/tea-with-leamon.png",
+  "/category icon/cola.png",
+  "/category icon/bottle-drink.png",
+  "/category icon/bottle.png",
+  "/category icon/mohito.png",
+  "/category icon/hamburger.png",
+  "/category icon/pizza.png",
+  "/category icon/pizza-piece.png",
+  "/category icon/sandwich.png",
+  "/category icon/chicken.png",
+  "/category icon/ham.png",
+  "/category icon/fish.png",
+  "/category icon/sushi.png",
+  "/category icon/fries.png",
+  "/category icon/soup.png",
+  "/category icon/salads.png",
+  "/category icon/cake.png",
+  "/category icon/dessert.png",
+  "/category icon/ice-cream.png",
+  "/category icon/macaron.png",
 ];
 
 interface Product {
@@ -741,7 +741,7 @@ export default function MenuManagementPage() {
       </div>
 
       {/* Search & Filters */}
-      <div className="flex flex-col lg:flex-row gap-4">
+      <div className="flex flex-col gap-4">
         <div className="relative flex-1 group">
           <Search
             size={18}
@@ -996,7 +996,7 @@ export default function MenuManagementPage() {
                 }
               />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProducts.map((product, index) => (
                   <motion.div
                     key={product.id}
@@ -1485,7 +1485,11 @@ export default function MenuManagementPage() {
               <div className="relative flex items-center gap-2 pr-5 pl-1.5 py-1.5 rounded-full bg-orange-500 text-white text-sm font-bold shadow-md shadow-orange-500/30">
                 <div className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 overflow-hidden">
                   {catIcon ? (
-                    <img src={getImageUrl(catIcon)} alt="" className="w-5 h-5 object-contain" />
+                    <img
+                      src={getImageUrl(catIcon)}
+                      alt=""
+                      className="w-5 h-5 object-contain"
+                    />
                   ) : (
                     <span className="text-base">🍽️</span>
                   )}
@@ -1520,7 +1524,11 @@ export default function MenuManagementPage() {
                       />
                       {isSelected && (
                         <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center shadow-md">
-                          <Check size={10} className="text-white" strokeWidth={3} />
+                          <Check
+                            size={10}
+                            className="text-white"
+                            strokeWidth={3}
+                          />
                         </div>
                       )}
                     </button>
@@ -1579,7 +1587,7 @@ export default function MenuManagementPage() {
         onClose={resetProductForm}
         title={editingProductId ? "Edit Product" : "New Product"}
       >
-        <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-4">
+        <div className="space-y-6 max-h-[70vh]  overflow-y-auto pr-4">
           {/* Product Image - at the top for visual impact */}
           <div className="space-y-2">
             <label className="text-[10px] font-black uppercase tracking-[0.1em] text-zinc-400 px-1">

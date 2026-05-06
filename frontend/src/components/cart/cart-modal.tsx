@@ -456,7 +456,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                 <div className="space-y-2 max-h-[40vh] overflow-y-auto pr-1">
                   {orderedItems.map((item, index) => (
                     <div
-                      key={`closed-${item.productId}-${item.comboId || ""}-${index}`}
+                      key={item.cartItemId}
                       className={`p-3 rounded-xl border bg-white/60 dark:bg-emerald-500/5 ${
                         item.isCombo || item.comboId
                           ? "border-amber-200 dark:border-amber-500/20"
@@ -473,11 +473,17 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center">
-                              <ShoppingBag size={16} className="text-zinc-300 dark:text-zinc-600" />
+                              <ShoppingBag
+                                size={16}
+                                className="text-zinc-300 dark:text-zinc-600"
+                              />
                             </div>
                           )}
                           <div className="absolute inset-0 flex items-center justify-center bg-emerald-900/20">
-                            <CheckCircle size={20} className="text-white drop-shadow" />
+                            <CheckCircle
+                              size={20}
+                              className="text-white drop-shadow"
+                            />
                           </div>
                         </div>
                         <div className="flex-1 min-w-0">
@@ -534,7 +540,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                   <AnimatePresence initial={false}>
                     {activeItems.map((item, index) => (
                       <motion.div
-                        key={`active-${item.productId}-${item.isGift}-${item.receiverTableId}-${item.comboId || ''}-${item.notes || ''}-${item.price}`}
+                        key={item.cartItemId}
                         layout
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -595,15 +601,20 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                                 {formatCurrency(item.price * item.quantity)}
                               </p>
                             </div>
-
-                          </div>{/* closes top flex row */}
+                          </div>
+                          {/* closes top flex row */}
 
                           {/* Bottom row: stepper + delete */}
                           {!item.isGift && (
                             <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5 dark:border-white/5">
                               <div className="flex items-center gap-1 bg-zinc-100 dark:bg-white/[0.06] rounded-lg p-0.5">
                                 <button
-                                  onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                                  onClick={() =>
+                                    updateQuantity(
+                                      item.productId,
+                                      item.quantity - 1,
+                                    )
+                                  }
                                   className="w-6 h-6 rounded-md flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors"
                                 >
                                   <Minus size={11} />
@@ -612,7 +623,12 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                                   {item.quantity}
                                 </span>
                                 <button
-                                  onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                                  onClick={() =>
+                                    updateQuantity(
+                                      item.productId,
+                                      item.quantity + 1,
+                                    )
+                                  }
                                   className="w-6 h-6 rounded-md flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors"
                                 >
                                   <Plus size={11} />
@@ -639,7 +655,9 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
               <>
                 <div className="flex items-center gap-2 pt-2">
                   <span className="text-xs font-medium text-green-600 dark:text-green-400">
-                    ✓ {orderedItems.reduce((sum, item) => sum + item.quantity, 0)} {labels.ordered}
+                    ✓{" "}
+                    {orderedItems.reduce((sum, item) => sum + item.quantity, 0)}{" "}
+                    {labels.ordered}
                   </span>
                   <div className="flex-1 h-px bg-green-200 dark:bg-green-500/20" />
                 </div>
@@ -648,17 +666,19 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                   <AnimatePresence initial={false}>
                     {orderedItems.map((item, index) => (
                       <motion.div
-                        key={`ordered-${item.productId}-${item.isGift}-${item.receiverTableId}-${item.comboId || ''}-${item.notes || ''}-${item.price}-${item.quantity}-${index}`}
+                        key={item.cartItemId}
                         layout
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                       >
-                        <div className={`p-3 rounded-xl border opacity-75 ${
-                          item.isCombo || item.comboId
-                            ? "bg-amber-50 dark:bg-amber-500/5 border-amber-200 dark:border-amber-500/20"
-                            : "bg-green-50 dark:bg-green-500/5 border-green-200 dark:border-green-500/20"
-                        }`}>
+                        <div
+                          className={`p-3 rounded-xl border opacity-75 ${
+                            item.isCombo || item.comboId
+                              ? "bg-amber-50 dark:bg-amber-500/5 border-amber-200 dark:border-amber-500/20"
+                              : "bg-green-50 dark:bg-green-500/5 border-green-200 dark:border-green-500/20"
+                          }`}
+                        >
                           <div className="flex items-center gap-3">
                             <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-zinc-100 dark:bg-white/5">
                               {item.image ? (
@@ -685,11 +705,13 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                                   Combo
                                 </Badge>
                               )}
-                              <p className={`text-xs font-semibold mt-0.5 ${
-                                item.isCombo || item.comboId 
-                                  ? "text-amber-600 dark:text-amber-400"
-                                  : "text-green-600 dark:text-green-400"
-                              }`}>
+                              <p
+                                className={`text-xs font-semibold mt-0.5 ${
+                                  item.isCombo || item.comboId
+                                    ? "text-amber-600 dark:text-amber-400"
+                                    : "text-green-600 dark:text-green-400"
+                                }`}
+                              >
                                 {formatCurrency(item.price * item.quantity)}
                               </p>
                             </div>
