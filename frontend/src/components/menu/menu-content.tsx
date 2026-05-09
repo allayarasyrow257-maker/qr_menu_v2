@@ -82,6 +82,7 @@ function getContrastColor(hex: string): "light" | "dark" {
   return luminance > 0.5 ? "dark" : "light";
 }
 
+<<<<<<< HEAD
 function adjustBrightness(hex: string, percent: number): string {
   const r = Math.min(255, Math.max(0, parseInt(hex.slice(1, 3), 16) + Math.round(255 * percent / 100)));
   const g = Math.min(255, Math.max(0, parseInt(hex.slice(3, 5), 16) + Math.round(255 * percent / 100)));
@@ -96,6 +97,8 @@ function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${r},${g},${b},${alpha})`;
 }
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 function shiftHue(hex: string, degrees: number): string {
   let r = parseInt(hex.slice(1, 3), 16) / 255;
   let g = parseInt(hex.slice(3, 5), 16) / 255;
@@ -308,6 +311,7 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
       ? cafeSettings.accentColorDark
       : cafeSettings.accentColorLight;
 
+<<<<<<< HEAD
   // Apply accent color as CSS custom properties globally
   useEffect(() => {
     if (!activeAccent) return;
@@ -326,6 +330,8 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
     };
   }, [activeAccent, theme]);
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   if (loading) {
     return (
       <div className="p-4 space-y-6 pt-20">
@@ -361,7 +367,11 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
             <div className="flex flex-col">
               {tableId ? (
                 <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-sm">
+<<<<<<< HEAD
                   <Utensils size={14} style={{ color: 'var(--accent-color, #f97316)' }} />
+=======
+                  <Utensils size={14} className="text-orange-500" />
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                   <span className="text-sm font-bold">
                     {tableLabel} {tableId}
                   </span>
@@ -495,12 +505,17 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
                             items
                           </span>
                         </div>
+<<<<<<< HEAD
                         <span className="text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg" style={{ backgroundColor: 'var(--accent-color, #f97316)' }}>
+=======
+                        <span className="text-white text-sm font-bold bg-orange-600 px-3 py-1 rounded-full shadow-lg">
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                           {formatCurrency(parseFloat(combo.price))}
                         </span>
                       </div>
                     </div>
 
+<<<<<<< HEAD
                     {/* Price comparison bar */}
                     {(() => {
                       const individualTotal = combo.items.reduce(
@@ -527,6 +542,11 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
                     <div className="px-4 py-3 flex items-center justify-between dark:text-white border-t border-black/5 dark:border-white/5">
                       <span className="text-xs font-medium text-zinc-400">
                         {lang === "tk" ? "Düzümini gör" : lang === "ru" ? "Состав" : lang === "tr" ? "İçeriği gör" : "View contents"}
+=======
+                    <div className="px-4 py-3 flex items-center justify-between dark:text-white">
+                      <span className="text-xs font-medium text-zinc-400">
+                        View contents
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                       </span>
                       <ChevronRight
                         size={18}
@@ -569,6 +589,7 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
                                   )}
                                 </p>
                               </div>
+<<<<<<< HEAD
                               <div className="flex items-center gap-2">
                                 <span className="text-[11px] text-muted-foreground">x{item.quantity}</span>
                                 <span className="text-xs font-medium text-zinc-500">{formatCurrency(parseFloat(item.product.price) * item.quantity)}</span>
@@ -598,13 +619,24 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
                             );
                           })()}
 
+=======
+                              <span className="text-xs text-muted-foreground">
+                                x{item.quantity}
+                              </span>
+                            </div>
+                          ))}
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handleAddComboToCart(combo);
                               setExpandedCombo(null);
                             }}
+<<<<<<< HEAD
                             className="w-full py-3 rounded-xl gradient-primary text-white text-sm font-semibold mt-2 shadow-lg active:scale-95 transition-transform"
+=======
+                            className="w-full py-3 rounded-xl gradient-primary text-white text-sm font-semibold mt-2 shadow-lg shadow-purple-500/20 active:scale-95 transition-transform"
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                           >
                             {lang === "tk"
                               ? "Sebede goş"
@@ -631,10 +663,16 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
                     onClick={() => scrollComboToIndex(i)}
                     className={`transition-all duration-300 rounded-full ${
                       activeComboIndex === i
+<<<<<<< HEAD
                         ? "h-1.5 w-5"
                         : "bg-zinc-300 dark:bg-zinc-600 h-1.5 w-1.5"
                     }`}
                     style={activeComboIndex === i ? { backgroundColor: 'var(--accent-color, #f97316)' } : undefined}
+=======
+                        ? "bg-orange-500 h-1.5 w-5"
+                        : "bg-zinc-300 dark:bg-zinc-600 h-1.5 w-1.5"
+                    }`}
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                   />
                 ))}
               </div>
@@ -666,7 +704,11 @@ export function MenuContent({ initialCategoryId, onBack }: MenuContentProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: catIndex * 0.1 }}
             >
+<<<<<<< HEAD
               <h2 className="text-2xl font-bold mb-6 text-gradient inline-block border-b-2 pb-1" style={{ borderColor: 'color-mix(in srgb, var(--accent-color, #f97316) 20%, transparent)' }}>
+=======
+              <h2 className="text-2xl font-bold mb-6 text-gradient inline-block border-b-2 border-orange-500/20 pb-1">
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 {getLocalizedName(category.name, language)}
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 justify-center items-stretch">

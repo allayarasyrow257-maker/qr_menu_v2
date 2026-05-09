@@ -14,6 +14,7 @@ function generateTableCode() {
   return code;
 }
 
+<<<<<<< HEAD
 // Helper: strip tabletPin from table object(s) for public responses
 function stripPin(table) {
   if (!table) return table;
@@ -38,13 +39,19 @@ router.post('/verify-pin', async (req, res) => {
   }
 });
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 // Lookup table by code or number
 router.get('/lookup/:param', async (req, res) => {
   try {
     const { param } = req.params;
     let table;
     
+<<<<<<< HEAD
     // Lookup by tableCode only (random 8-char code, not guessable)
+=======
+    // Try lookup by tableCode first (8-char string)
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     table = await prisma.table.findUnique({
       where: { tableCode: param },
       include: {
@@ -56,8 +63,27 @@ router.get('/lookup/:param', async (req, res) => {
       },
     });
 
+<<<<<<< HEAD
     if (!table) return res.status(404).json({ error: 'Table not found' });
     res.json(stripPin(table));
+=======
+    // If not found and it's a number, try lookup by number
+    if (!table && !isNaN(parseInt(param))) {
+      table = await prisma.table.findUnique({
+        where: { number: parseInt(param) },
+        include: {
+          orders: {
+            where: { billClosedAt: null, status: { not: 'cancelled' } },
+            include: { items: { include: { product: true, combo: true } } },
+            orderBy: { createdAt: 'asc' },
+          },
+        },
+      });
+    }
+
+    if (!table) return res.status(404).json({ error: 'Table not found' });
+    res.json(table);
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   } catch (error) {
     res.status(500).json({ error: 'Failed to lookup table' });
   }
@@ -76,6 +102,7 @@ router.get('/', async (req, res) => {
         },
       },
     });
+<<<<<<< HEAD
     // If admin auth header present, include PIN; otherwise strip it
     const authHeader = req.headers['authorization'];
     if (authHeader) {
@@ -83,6 +110,9 @@ router.get('/', async (req, res) => {
     } else {
       res.json(tables.map(stripPin));
     }
+=======
+    res.json(tables);
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch tables' });
   }
@@ -136,6 +166,7 @@ router.post('/:id/close-bill', authenticateToken, async (req, res) => {
       where: { tableId, billClosedAt: null },
       include: { items: { include: { product: true, combo: true } } },
     });
+<<<<<<< HEAD
 
     // Block closing if any order is not yet delivered
     const undelivered = sessionOrders.filter(o => o.status !== 'delivered');
@@ -145,11 +176,26 @@ router.post('/:id/close-bill', authenticateToken, async (req, res) => {
       });
     }
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     const sessionTotal = sessionOrders.reduce(
       (sum, o) => sum + Number(o.total),
       0,
     );
 
+<<<<<<< HEAD
+=======
+    // 1) Mark any still-pending orders as delivered (the bill is being settled)
+    await prisma.order.updateMany({
+      where: {
+        tableId,
+        billClosedAt: null,
+        status: { in: ['pending', 'preparing', 'ready'] },
+      },
+      data: { status: 'delivered' },
+    });
+
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     // 2) Stamp every current-session order with the closure timestamp.
     //    These orders disappear from the active view and are tied together
     //    in history as one bill.
@@ -194,6 +240,7 @@ router.post('/:id/close-bill', authenticateToken, async (req, res) => {
 // Create table (admin)
 router.post('/', authenticateToken, async (req, res) => {
   try {
+<<<<<<< HEAD
     const { number, name, tabletPin } = req.body;
     if (tabletPin && !/^\d{4,6}$/.test(tabletPin)) {
       return res.status(400).json({ error: 'PIN must be 4-6 digits' });
@@ -201,6 +248,12 @@ router.post('/', authenticateToken, async (req, res) => {
     const tableCode = generateTableCode();
     const table = await prisma.table.create({
       data: { number, name, tableCode, tabletPin: tabletPin || null },
+=======
+    const { number, name } = req.body;
+    const tableCode = generateTableCode();
+    const table = await prisma.table.create({
+      data: { number, name, tableCode },
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     });
     res.status(201).json(table);
   } catch (error) {
@@ -214,6 +267,7 @@ router.post('/', authenticateToken, async (req, res) => {
 // Update table (admin)
 router.put('/:id', authenticateToken, async (req, res) => {
   try {
+<<<<<<< HEAD
     const { number, name, status, tabletPin } = req.body;
     if (tabletPin !== undefined && tabletPin !== null && tabletPin !== '' && !/^\d{4,6}$/.test(tabletPin)) {
       return res.status(400).json({ error: 'PIN must be 4-6 digits' });
@@ -226,6 +280,12 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const table = await prisma.table.update({
       where: { id: parseInt(req.params.id) },
       data,
+=======
+    const { number, name, status } = req.body;
+    const table = await prisma.table.update({
+      where: { id: parseInt(req.params.id) },
+      data: { number, name, status },
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     });
     res.json(table);
   } catch (error) {

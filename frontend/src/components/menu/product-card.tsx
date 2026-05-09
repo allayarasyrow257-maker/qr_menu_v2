@@ -109,8 +109,12 @@ export function ProductCard({
                 initial={{ scale: 0, rotate: -15 }}
                 animate={{ scale: 1, rotate: 0 }}
                 exit={{ scale: 0 }}
+<<<<<<< HEAD
                 className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-white text-[10px] font-bold flex items-center justify-center shadow-lg z-20"
                 style={{ backgroundColor: 'var(--accent-color, #f97316)' }}
+=======
+                className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-orange-600 text-white text-[10px] font-bold flex items-center justify-center shadow-lg z-20"
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               >
                 {qty}
               </motion.div>
@@ -134,7 +138,11 @@ export function ProductCard({
           </div>
 
           <div className="flex items-center justify-between mt-auto pt-1">
+<<<<<<< HEAD
             <span className="font-bold text-sm" style={{ color: 'var(--accent-color, #f97316)' }}>
+=======
+            <span className="text-orange-500 dark:text-orange-500 font-bold text-sm">
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               {formatCurrency(parseFloat(product.price))}
             </span>
 
@@ -147,12 +155,16 @@ export function ProductCard({
                   exit={{ scale: 0.8, opacity: 0 }}
                   whileTap={{ scale: 0.85 }}
                   onClick={handleAdd}
+<<<<<<< HEAD
                   className="w-8 h-8 rounded-full flex items-center justify-center shadow-sm transition-colors"
                   style={{
                     backgroundColor: 'var(--accent-color-light, rgba(249,115,22,0.08))',
                     border: '1px solid color-mix(in srgb, var(--accent-color, #f97316) 30%, transparent)',
                     color: 'var(--accent-color, #f97316)',
                   }}
+=======
+                  className="w-8 h-8 rounded-full flex items-center justify-center bg-orange-50 dark:bg-orange-500/10 border border-orange-200/50 dark:border-orange-500/30 text-orange-600 dark:text-orange-400 shadow-sm active:bg-orange-100 transition-colors"
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 >
                   <Plus size={16} />
                 </motion.button>
@@ -177,8 +189,12 @@ export function ProductCard({
                   <motion.button
                     whileTap={{ scale: 0.85 }}
                     onClick={handleAdd}
+<<<<<<< HEAD
                     className="w-7 h-7 rounded-full flex items-center justify-center text-white shadow-md transition-colors"
                     style={{ backgroundColor: 'var(--accent-color, #f97316)' }}
+=======
+                    className="w-7 h-7 rounded-full flex items-center justify-center bg-orange-500 text-white shadow-md active:bg-orange-600 transition-colors"
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                   >
                     <Plus size={14} />
                   </motion.button>
@@ -247,7 +263,11 @@ export function ProductCard({
 
                     {/* CATEGORY */}
                     {categoryName && (
+<<<<<<< HEAD
                       <div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest mb-3 md:py-12" style={{ color: 'var(--accent-color, #f97316)' }}>
+=======
+                      <div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-orange-500 mb-3 md:py-12 ">
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                         <Tag size={14} />
                         {getLocalizedName(categoryName, lang)}
                       </div>
@@ -259,9 +279,15 @@ export function ProductCard({
                     </h2>
 
                     {/* PRICE */}
+<<<<<<< HEAD
                     <div className="mt-6 flex items-center justify-center gap-3 px-5 py-3 rounded-2xl mb-6" style={{ backgroundColor: 'var(--accent-color-light, rgba(249,115,22,0.08))' }}>
                       <Coins size={20} style={{ color: 'var(--accent-color, #f97316)' }} />
                       <span className="text-2xl font-bold" style={{ color: 'var(--accent-color, #f97316)' }}>
+=======
+                    <div className="mt-6 flex items-center justify-center gap-3 bg-orange-100/60 dark:bg-orange-500/10 px-5 py-3 rounded-2xl mb-6">
+                      <Coins size={20} className="text-orange-500" />
+                      <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                         {formatCurrency(parseFloat(product.price))}
                       </span>
                     </div>
@@ -295,8 +321,12 @@ export function ProductCard({
                       {qty === 0 && (
                         <button
                           onClick={handleAdd}
+<<<<<<< HEAD
                           className="flex-1 py-3 w-full rounded-2xl text-white font-semibold hover:scale-[1.02] active:scale-[0.97] transition"
                           style={{ backgroundColor: 'var(--accent-color, #f97316)' }}
+=======
+                          className="flex-1 py-3 w-full rounded-2xl bg-orange-600 text-white font-semibold hover:scale-[1.02] active:scale-[0.97] transition"
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                         >
                           {lang === "tk"
                             ? "Goş"

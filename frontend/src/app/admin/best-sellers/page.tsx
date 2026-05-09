@@ -164,7 +164,11 @@ export default function BestSellersPage() {
       <div className="space-y-2">
         {items.map((item, index) => (
           <motion.div
+<<<<<<< HEAD
             key={`${item.productId}-${index}`}
+=======
+            key={item.productId}
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.03 }}

@@ -57,11 +57,18 @@ function getBillClosedKey(tableId: number | null): string {
   return tableId ? `qrmenu_billclosed_${tableId}` : "qrmenu_billclosed";
 }
 
+<<<<<<< HEAD
 // Auto-acknowledge a closed-bill notice if it's older than this (10 sec).
 // After admin closes the bill, the customer sees a 5s countdown then the
 // session resets. If the page is refreshed during or after that window,
 // this TTL ensures the stale closed-bill banner is immediately cleared.
 const BILL_CLOSED_TTL_MS = 10 * 1000;
+=======
+// Auto-acknowledge a closed-bill notice if it's older than this (30 min).
+// Prevents a returning device from being stuck on a stale closed-bill screen
+// that belongs to a previous customer group.
+const BILL_CLOSED_TTL_MS = 30 * 60 * 1000;
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 
 function saveCart(items: CartItem[], tableId: number | null) {
   try {
@@ -132,7 +139,10 @@ interface CartState {
   hydrate: () => void;
   addItem: (item: Omit<CartItem, "quantity" | "status">) => void;
   removeItem: (productId: number) => void;
+<<<<<<< HEAD
   removeByCartItemId: (cartItemId: string) => void;
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   updateQuantity: (productId: number, quantity: number) => void;
   updateItemNotes: (productId: number, notes: string) => void;
   clearCart: () => void;
@@ -221,6 +231,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     });
   },
 
+<<<<<<< HEAD
   removeByCartItemId: (cartItemId) => {
     set((state) => {
       const newItems = state.items.filter((i) => i.cartItemId !== cartItemId);
@@ -229,6 +240,8 @@ export const useCartStore = create<CartState>((set, get) => ({
     });
   },
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   updateQuantity: (productId, quantity) => {
     set((state) => {
       let newItems;
@@ -297,6 +310,7 @@ export const useCartStore = create<CartState>((set, get) => ({
   },
 
   acknowledgeClosedBill: () => {
+<<<<<<< HEAD
     const { tableId, tableNumber } = get();
     saveCart([], tableId);
     saveBillClosedAt(null, tableId);
@@ -310,6 +324,12 @@ export const useCartStore = create<CartState>((set, get) => ({
       newSessionId = freshId;
     }
     set({ items: [], billClosedAt: null, ...(newSessionId ? { sessionId: newSessionId } : {}) });
+=======
+    const { tableId } = get();
+    saveCart([], tableId);
+    saveBillClosedAt(null, tableId);
+    set({ items: [], billClosedAt: null });
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   },
 
   setOrderedItemsFromBackend: (orderedItems) => {

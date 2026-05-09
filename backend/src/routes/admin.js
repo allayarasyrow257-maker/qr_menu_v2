@@ -30,7 +30,11 @@ router.get('/settings', (req, res) => {
 // Update cafe settings (admin)
 router.put('/settings', authenticateToken, async (req, res) => {
   try {
+<<<<<<< HEAD
     const { name, logo, backgroundColorLight, backgroundColorDark, accentColorLight, accentColorDark, maintenance } = req.body;
+=======
+    const { name, logo, backgroundColorLight, backgroundColorDark, accentColorLight, accentColorDark } = req.body;
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     const settings = readSettings();
     if (name !== undefined) settings.name = name;
     if (logo !== undefined) settings.logo = logo;
@@ -38,7 +42,10 @@ router.put('/settings', authenticateToken, async (req, res) => {
     if (backgroundColorDark !== undefined) settings.backgroundColorDark = backgroundColorDark;
     if (accentColorLight !== undefined) settings.accentColorLight = accentColorLight;
     if (accentColorDark !== undefined) settings.accentColorDark = accentColorDark;
+<<<<<<< HEAD
     if (maintenance !== undefined) settings.maintenance = maintenance;
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     writeSettings(settings);
     res.json(settings);
   } catch (error) {

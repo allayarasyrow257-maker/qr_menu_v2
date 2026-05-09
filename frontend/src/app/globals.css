@@ -20,10 +20,13 @@
     --input: 220 13% 87%;
     --ring: 21 90% 53%;
     --radius: 0.75rem;
+<<<<<<< HEAD
     --accent-color: #f97316;
     --accent-color-hover: #ea580c;
     --accent-color-light: #fff7ed;
     --accent-color-muted: #fdba74;
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   }
 
   .dark {
@@ -42,10 +45,13 @@
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: 21 90% 53%;
+<<<<<<< HEAD
     --accent-color: #f97316;
     --accent-color-hover: #ea580c;
     --accent-color-light: rgba(249,115,22,0.1);
     --accent-color-muted: #fdba74;
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   }
 }
 
@@ -69,16 +75,28 @@
   }
 
   .gradient-primary {
+<<<<<<< HEAD
     background: linear-gradient(to right, var(--accent-color, #f97316), var(--accent-color-muted, #fb923c));
   }
 
   .gradient-accent {
     background: linear-gradient(to right, var(--accent-color-hover, #ea580c), var(--accent-color, #f97316));
+=======
+    background: linear-gradient(to right, #f97316, #fb923c);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(to right, #ea580c, #f97316);
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
+<<<<<<< HEAD
     background-image: linear-gradient(to right, var(--accent-color, #f97316), var(--accent-color-muted, #fb923c));
+=======
+    background-image: linear-gradient(to right, #f97316, #fb923c);
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   }
 }
 

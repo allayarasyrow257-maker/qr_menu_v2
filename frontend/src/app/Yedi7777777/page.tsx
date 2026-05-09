@@ -8,7 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Upload, X, Save, ImageIcon, Sun, Moon, Lock, Mail, Eye, EyeOff,
+<<<<<<< HEAD
   Shield, KeyRound, LogOut, ArrowLeft, AlertTriangle, Power,
+=======
+  Shield, KeyRound, LogOut, ArrowLeft,
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 } from 'lucide-react';
 import { useAdminStore } from '@/store/admin-store';
 import toast from 'react-hot-toast';
@@ -22,7 +26,10 @@ interface CafeSettings {
   backgroundColorDark?: string;
   accentColorLight?: string;
   accentColorDark?: string;
+<<<<<<< HEAD
   maintenance?: boolean;
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 }
 
 export default function MasterAdminPage() {
@@ -226,6 +233,11 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
   const [settings, setSettings] = useState<CafeSettings>({});
   const [name, setName] = useState('');
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
+<<<<<<< HEAD
+=======
+  const [bgLight, setBgLight] = useState('#f8f8f8');
+  const [bgDark, setBgDark] = useState('#0a0f1a');
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const [accentLight, setAccentLight] = useState('#7c3aed');
   const [accentDark, setAccentDark] = useState('#a78bfa');
   const [uploading, setUploading] = useState(false);
@@ -234,6 +246,7 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
   const [emailPassword, setEmailPassword] = useState('');
   const [showEmailPw, setShowEmailPw] = useState(false);
   const [changingEmail, setChangingEmail] = useState(false);
+<<<<<<< HEAD
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -242,6 +255,8 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
   const [changingPassword, setChangingPassword] = useState(false);
   const [maintenanceMode, setMaintenanceMode] = useState(false);
   const [togglingMaintenance, setTogglingMaintenance] = useState(false);
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -249,6 +264,7 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
       setSettings(data);
       setName(data.name || '');
       if (data.logo) setLogoPreview(getImageUrl(data.logo));
+<<<<<<< HEAD
       if (data.accentColorLight) setAccentLight(data.accentColorLight);
       if (data.accentColorDark) setAccentDark(data.accentColorDark);
       setMaintenanceMode(!!data.maintenance);
@@ -270,6 +286,15 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
     }
   };
 
+=======
+      if (data.backgroundColorLight) setBgLight(data.backgroundColorLight);
+      if (data.backgroundColorDark) setBgDark(data.backgroundColorDark);
+      if (data.accentColorLight) setAccentLight(data.accentColorLight);
+      if (data.accentColorDark) setAccentDark(data.accentColorDark);
+    }).catch(() => {});
+  }, []);
+
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -318,6 +343,7 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
     }
   };
 
+<<<<<<< HEAD
   const handleChangePassword = async () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       toast.error('Please fill in all password fields');
@@ -348,12 +374,19 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
     }
   };
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const handleSave = async () => {
     setSaving(true);
     try {
       const updated = await api.put<CafeSettings>('/admin/settings', {
         name,
         logo: settings.logo || null,
+<<<<<<< HEAD
+=======
+        backgroundColorLight: bgLight || null,
+        backgroundColorDark: bgDark || null,
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
         accentColorLight: accentLight || null,
         accentColorDark: accentDark || null,
       }, true);
@@ -381,6 +414,7 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
           </div>
           <div className="flex items-center gap-2">
             <button
+<<<<<<< HEAD
               onClick={() => handleToggleMaintenance(!maintenanceMode)}
               disabled={togglingMaintenance}
               className={`text-xs px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5 font-semibold ${
@@ -399,6 +433,8 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
               {maintenanceMode ? 'Go Live' : 'Shutdown'}
             </button>
             <button
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               onClick={onLogoutGate}
               className="text-xs px-3 py-2 rounded-xl bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors flex items-center gap-1.5"
             >
@@ -416,6 +452,7 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
         </div>
       </header>
 
+<<<<<<< HEAD
       {/* Maintenance Banner */}
       {maintenanceMode && (
         <div className="max-w-3xl mx-auto px-6 pt-4">
@@ -436,6 +473,8 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
         </div>
       )}
 
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       <main className="max-w-3xl mx-auto p-6 space-y-6">
         <div>
           <h2 className="text-2xl font-bold">Cafe Configuration</h2>
@@ -523,6 +562,97 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
           </Card>
         </motion.div>
 
+<<<<<<< HEAD
+=======
+        {/* Background Colors */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <Card>
+            <CardContent>
+              <h3 className="text-lg font-semibold mb-2">Menu Background Colors</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Set separate background colors for light and dark mode.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-3 p-4 rounded-2xl border border-white/10 bg-white/5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sun size={16} className="text-yellow-500" />
+                    <span className="text-sm font-semibold">Light Mode</span>
+                  </div>
+                  <input
+                    type="color"
+                    value={bgLight}
+                    onChange={(e) => setBgLight(e.target.value)}
+                    className="w-full h-12 rounded-xl cursor-pointer border-2 border-white/10 bg-transparent [&::-webkit-color-swatch-wrapper]:p-1 [&::-webkit-color-swatch]:rounded-lg [&::-webkit-color-swatch]:border-none"
+                  />
+                  <input
+                    type="text"
+                    value={bgLight}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^#[0-9A-Fa-f]{0,6}$/.test(val)) setBgLight(val);
+                    }}
+                    placeholder="#f8f8f8"
+                    className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500/50 transition-colors text-sm font-mono"
+                  />
+                  <div
+                    className="rounded-xl h-16 border border-black/10 flex items-center justify-center"
+                    style={{ backgroundColor: bgLight }}
+                  >
+                    <span className="text-xs font-medium px-2 py-1 rounded-md bg-black/10 text-black/70">
+                      Preview
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setBgLight('#f8f8f8')}
+                    className="text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Reset default
+                  </button>
+                </div>
+
+                <div className="space-y-3 p-4 rounded-2xl border border-white/10 bg-white/5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Moon size={16} className="text-blue-400" />
+                    <span className="text-sm font-semibold">Dark Mode</span>
+                  </div>
+                  <input
+                    type="color"
+                    value={bgDark}
+                    onChange={(e) => setBgDark(e.target.value)}
+                    className="w-full h-12 rounded-xl cursor-pointer border-2 border-white/10 bg-transparent [&::-webkit-color-swatch-wrapper]:p-1 [&::-webkit-color-swatch]:rounded-lg [&::-webkit-color-swatch]:border-none"
+                  />
+                  <input
+                    type="text"
+                    value={bgDark}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^#[0-9A-Fa-f]{0,6}$/.test(val)) setBgDark(val);
+                    }}
+                    placeholder="#0a0f1a"
+                    className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500/50 transition-colors text-sm font-mono"
+                  />
+                  <div
+                    className="rounded-xl h-16 border border-white/10 flex items-center justify-center"
+                    style={{ backgroundColor: bgDark }}
+                  >
+                    <span className="text-xs font-medium px-2 py-1 rounded-md bg-white/10 text-white/70">
+                      Preview
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setBgDark('#0a0f1a')}
+                    className="text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Reset default
+                  </button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
         {/* Accent / Button Colors */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
           <Card>
@@ -699,6 +829,7 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
             </CardContent>
           </Card>
         </motion.div>
+<<<<<<< HEAD
 
         {/* Change Password */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
@@ -779,6 +910,8 @@ function MasterPanel({ user, onLogoutGate, onLogoutAdmin, onAuthUpdated }: Maste
             </CardContent>
           </Card>
         </motion.div>
+=======
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       </main>
     </div>
   );

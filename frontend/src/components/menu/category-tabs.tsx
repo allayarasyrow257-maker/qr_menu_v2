@@ -64,11 +64,18 @@ export function CategoryTabs({ categories, activeCategory, onSelect, language }:
             ref={isActive ? activeRef : null}
             onClick={() => onSelect(category.id)}
             className={`relative flex-shrink-0 flex items-center gap-2 pr-5 pl-1.5 py-1.5 rounded-full text-sm font-bold whitespace-nowrap group transition-colors duration-200
+<<<<<<< HEAD
     ${isActive ? 'text-white' : ''}`}
             style={isActive
               ? { backgroundColor: 'var(--accent-color, #f97316)', boxShadow: '0 4px 6px -1px color-mix(in srgb, var(--accent-color, #f97316) 30%, transparent)' }
               : { backgroundColor: 'var(--accent-color-light, rgba(249,115,22,0.08))', color: 'var(--accent-color, #f97316)' }
             }
+=======
+    ${isActive
+                ? 'bg-orange-500 shadow-md shadow-orange-500/30 text-white'
+                : 'bg-orange-100 dark:bg-orange-500/15 text-orange-400'
+              }`}
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           >
             {/* Icon white circle */}
             <div className="relative z-10 w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 overflow-hidden">

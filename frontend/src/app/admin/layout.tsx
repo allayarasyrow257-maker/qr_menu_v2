@@ -89,9 +89,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-background flex" style={accentStyle}>
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+<<<<<<< HEAD
       <div className="flex-1 min-w-0 lg:ml-64">
         <AdminTopbar onMenuToggle={() => setSidebarOpen(true)} />
         <main className="p-6 overflow-x-hidden">{children}</main>
+=======
+      <div className="flex-1 lg:ml-64">
+        <AdminTopbar onMenuToggle={() => setSidebarOpen(true)} />
+        <main className="p-6">{children}</main>
+>>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       </div>
     </div>
   );
