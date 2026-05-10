@@ -35,10 +35,7 @@ interface Category {
   name: Record<string, string>;
   image?: string;
   icon?: string;
-<<<<<<< HEAD
   sortOrder: number;
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   products: Product[];
 }
 
@@ -331,7 +328,6 @@ export default function MenuManagementPage() {
     setShowCategoryModal(true);
   };
 
-<<<<<<< HEAD
   const setCategoryOrder = async (catId: number, newPosition: number) => {
     const sorted = [...categories].sort((a, b) => a.sortOrder - b.sortOrder);
     const currentIdx = sorted.findIndex((c) => c.id === catId);
@@ -355,8 +351,6 @@ export default function MenuManagementPage() {
     }
   };
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const resetCategoryForm = () => {
     setCatNames({ en: "", tr: "", tk: "", ru: "" });
     setCatImage("");
@@ -626,11 +620,7 @@ export default function MenuManagementPage() {
   }
 
   return (
-<<<<<<< HEAD
     <div className="space-y-8 pb-10 min-w-0 w-full">
-=======
-    <div className="space-y-8 pb-10">
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
@@ -905,7 +895,6 @@ export default function MenuManagementPage() {
                           </p>
                         </div>
 
-<<<<<<< HEAD
                         {/* Sort Order Dropdown */}
                         <div className="absolute top-4 left-4">
                           <select
@@ -926,8 +915,6 @@ export default function MenuManagementPage() {
                           </select>
                         </div>
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                         {/* Actions Overlay */}
                         <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all translate-y-[-10px] group-hover:translate-y-0">
                           <button
@@ -1053,11 +1040,7 @@ export default function MenuManagementPage() {
                 }
               />
             ) : (
-<<<<<<< HEAD
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-w-0">
-=======
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 {filteredProducts.map((product, index) => (
                   <motion.div
                     key={product.id}
@@ -1769,13 +1752,8 @@ export default function MenuManagementPage() {
                 Price <span className="text-orange-500 ml-1 text-xs">*</span>
               </label>
               <div className="relative group">
-<<<<<<< HEAD
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-orange-500 transition-colors font-bold text-xs">
                   TMT
-=======
-                <div className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-orange-500 transition-colors font-bold">
-                  $
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 </div>
                 <input
                   type="number"
@@ -1783,11 +1761,7 @@ export default function MenuManagementPage() {
                   value={prodPrice}
                   onChange={(e) => setProdPrice(e.target.value)}
                   placeholder="0.00"
-<<<<<<< HEAD
                   className="w-full pl-5 pr-14 py-4 rounded-2xl bg-zinc-50 dark:bg-black/20 border border-black/5 dark:border-white/5 focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500/40 text-sm font-bold transition-all"
-=======
-                  className="w-full pl-10 pr-5 py-4 rounded-2xl bg-zinc-50 dark:bg-black/20 border border-black/5 dark:border-white/5 focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500/40 text-sm font-bold transition-all"
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 />
               </div>
             </div>
@@ -1927,13 +1901,8 @@ export default function MenuManagementPage() {
               Set Price <span className="text-orange-500 ml-1 text-xs">*</span>
             </label>
             <div className="relative group">
-<<<<<<< HEAD
               <div className="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-orange-500 transition-colors font-bold text-xs">
                 TMT
-=======
-              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-orange-500 transition-colors font-bold">
-                $
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               </div>
               <input
                 type="number"
@@ -1941,11 +1910,7 @@ export default function MenuManagementPage() {
                 value={comboPrice}
                 onChange={(e) => setComboPrice(e.target.value)}
                 placeholder="0.00"
-<<<<<<< HEAD
                 className="w-full pl-5 pr-14 py-4 rounded-2xl bg-zinc-50 dark:bg-black/20 border border-black/5 dark:border-white/5 focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500/40 text-sm font-bold transition-all"
-=======
-                className="w-full pl-10 pr-5 py-4 rounded-2xl bg-zinc-50 dark:bg-black/20 border border-black/5 dark:border-white/5 focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500/40 text-sm font-bold transition-all"
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               />
             </div>
           </div>
@@ -2108,7 +2073,6 @@ export default function MenuManagementPage() {
                 })}
             </div>
 
-<<<<<<< HEAD
             {/* Selected items summary & pricing */}
             {comboItems.length > 0 && (() => {
               const totalIndividual = comboItems.reduce((sum, item) => {
@@ -2170,49 +2134,6 @@ export default function MenuManagementPage() {
                 </div>
               );
             })()}
-=======
-            {/* Selected items summary */}
-            {comboItems.length > 0 && (
-              <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Check size={16} className="text-emerald-500" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
-                      {comboItems.reduce((sum, i) => sum + i.quantity, 0)} items
-                      in set
-                    </span>
-                  </div>
-                  {comboPrice &&
-                    (() => {
-                      const totalIndividual = comboItems.reduce((sum, item) => {
-                        const product = allProducts.find(
-                          (p) => p.id === item.productId,
-                        );
-                        return (
-                          sum +
-                          (product
-                            ? parseFloat(product.price) * item.quantity
-                            : 0)
-                        );
-                      }, 0);
-                      const savings = totalIndividual - parseFloat(comboPrice);
-                      return (
-                        <div className="text-right">
-                          <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                            Savings
-                          </p>
-                          <p
-                            className={`text-sm font-black ${savings > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-zinc-500"}`}
-                          >
-                            {savings > 0 ? formatCurrency(savings) : "$0.00"}
-                          </p>
-                        </div>
-                      );
-                    })()}
-                </div>
-              </div>
-            )}
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           </div>
 
           <div className="pt-4">

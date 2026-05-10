@@ -100,13 +100,8 @@ export function BottomNav({ onCartOpen, onHome, showHome = true }: BottomNavProp
                 onClick={() => setGiftOpen(true)}
                 className="flex flex-col items-center gap-0.5 py-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all"
               >
-<<<<<<< HEAD
                 <Gift size={20} style={{ color: 'var(--accent-color, #f97316)' }} />
                 <span className="text-[10px] font-medium" style={{ color: 'var(--accent-color-muted, #fdba74)' }}>
-=======
-                <Gift size={20} className="text-orange-500" />
-                <span className="text-[10px] text-orange-300 font-medium">
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                   {giftLabel}
                 </span>
               </button>
@@ -121,15 +116,9 @@ export function BottomNav({ onCartOpen, onHome, showHome = true }: BottomNavProp
                       ? 'bg-red-500 shadow-red-500/40'
                       : waiterState === 'called'
                       ? 'bg-green-500 shadow-green-500/40'
-<<<<<<< HEAD
                       : ''
                   }`}
                   style={waiterState === 'idle' ? { backgroundColor: 'var(--accent-color, #f97316)', boxShadow: '0 10px 15px -3px color-mix(in srgb, var(--accent-color, #f97316) 30%, transparent)' } : undefined}
-=======
-                      : 'bg-orange-500'
-                  }`}
-                  style={waiterState === 'idle' ? { boxShadow: '0 10px 15px -3px color-mix(in srgb, var(--accent-color, #f1995bff) 30%, transparent)' } : undefined}
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 >
                   {/* Outer ring for visual polish */}
                   <div className="absolute inset-[-3px] rounded-full border-[3px] border-background" />
@@ -210,12 +199,8 @@ export function BottomNav({ onCartOpen, onHome, showHome = true }: BottomNavProp
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0 }}
-<<<<<<< HEAD
                         className="absolute -top-1 -right-1.5 text-white text-[8px] font-bold rounded-full min-w-[14px] h-[14px] flex items-center justify-center"
                         style={{ backgroundColor: 'var(--accent-color, #f97316)' }}
-=======
-                        className="absolute -top-1 -right-1.5 text-white text-[8px] font-bold bg-orange-500 rounded-full min-w-[14px] h-[14px] flex items-center justify-center"
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                       >
                         {itemCount}
                       </motion.span>

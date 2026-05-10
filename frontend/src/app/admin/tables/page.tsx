@@ -19,14 +19,11 @@ import {
   Check,
   Receipt,
   Lock,
-<<<<<<< HEAD
   Gift,
   Package,
   Sparkles,
   Tablet,
   Key,
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -43,13 +40,9 @@ interface OrderItem {
   id: number;
   quantity: number;
   price: string;
-<<<<<<< HEAD
   notes?: string;
   isGift: boolean;
   delivered: boolean;
-=======
-  isGift: boolean;
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   product?: { name: Record<string, string>; image?: string };
   combo?: { name: Record<string, string>; image?: string };
 }
@@ -58,10 +51,7 @@ interface Order {
   id: number;
   status: string;
   total: string;
-<<<<<<< HEAD
   source?: string;
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   sessionId?: string;
   billClosedAt?: string | null;
   createdAt: string;
@@ -74,10 +64,7 @@ interface Table {
   number: number;
   tableCode: string;
   name: string;
-<<<<<<< HEAD
   tabletPin?: string;
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   status: string;
   orders: Order[];
 }
@@ -187,7 +174,6 @@ const LABELS = {
 
 const WAITER_CALLS_KEY = "waiter_calls_active";
 
-<<<<<<< HEAD
 function playNewOrderSound() {
   if (typeof window === "undefined") return;
   try {
@@ -214,8 +200,6 @@ function playNewOrderSound() {
   } catch {}
 }
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 function playWaiterChime() {
   if (typeof window === "undefined") return;
   try {
@@ -254,23 +238,17 @@ export default function TablesPage() {
   const [showCreate, setShowCreate] = useState(false);
   const [newTableNumber, setNewTableNumber] = useState("");
   const [newTableName, setNewTableName] = useState("");
-<<<<<<< HEAD
   const [newTablePin, setNewTablePin] = useState("");
   const [pinEditTable, setPinEditTable] = useState<Table | null>(null);
   const [pinEditValue, setPinEditValue] = useState("");
   const [savingPin, setSavingPin] = useState(false);
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const [waiterCalls, setWaiterCalls] = useState<Set<number>>(new Set());
   const [qrTable, setQrTable] = useState<Table | null>(null);
   const [expandedTable, setExpandedTable] = useState<number | null>(null);
   const [historyTable, setHistoryTable] = useState<Table | null>(null);
   const [historyOrders, setHistoryOrders] = useState<Order[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
-<<<<<<< HEAD
   const [newOrderTables, setNewOrderTables] = useState<Set<number>>(new Set());
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const qrRef = useRef<HTMLDivElement>(null);
   const chimeIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const { language } = useCartStore();
@@ -296,11 +274,7 @@ export default function TablesPage() {
 
   const fetchTables = async () => {
     try {
-<<<<<<< HEAD
       const data = await api.get<Table[]>("/tables", true);
-=======
-      const data = await api.get<Table[]>("/tables");
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       setTables(data);
     } catch (error) {
       console.error("Failed to fetch tables:", error);
@@ -335,7 +309,6 @@ export default function TablesPage() {
       playWaiterChime();
     });
 
-<<<<<<< HEAD
     socket.on("order-received", (data: any) => {
       if (data?.tableId) {
         setNewOrderTables((prev) => {
@@ -347,9 +320,6 @@ export default function TablesPage() {
       fetchTables();
       playNewOrderSound();
     });
-=======
-    socket.on("order-received", () => fetchTables());
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     socket.on("order-status-updated", () => fetchTables());
     socket.on("table-updated", () => fetchTables());
 
@@ -386,20 +356,14 @@ export default function TablesPage() {
         {
           number: parseInt(newTableNumber),
           name: newTableName || `Table ${newTableNumber}`,
-<<<<<<< HEAD
           tabletPin: newTablePin || undefined,
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
         },
         true,
       );
       setShowCreate(false);
       setNewTableNumber("");
       setNewTableName("");
-<<<<<<< HEAD
       setNewTablePin("");
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       fetchTables();
       toast.success("Table created");
     } catch (error: any) {
@@ -407,7 +371,6 @@ export default function TablesPage() {
     }
   };
 
-<<<<<<< HEAD
   const handleSavePin = async () => {
     if (!pinEditTable) return;
     if (pinEditValue && !/^\d{4,6}$/.test(pinEditValue)) {
@@ -427,34 +390,21 @@ export default function TablesPage() {
     }
   };
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const handleCloseBill = async (table: Table) => {
     const total = table.orders.reduce((s, o) => s + parseFloat(o.total), 0);
     const undelivered = table.orders.filter(
       (o) => o.status !== "delivered",
     ).length;
-<<<<<<< HEAD
     if (undelivered > 0) {
       toast.error(
         `Cannot close bill: ${undelivered} order${undelivered === 1 ? " is" : "s are"} not yet delivered`,
       );
       return;
     }
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     const lines = [
       `Close bill for Table ${table.number}?`,
       `Total: ${formatCurrency(total)} (${table.orders.length} order${table.orders.length === 1 ? "" : "s"})`,
     ];
-<<<<<<< HEAD
-=======
-    if (undelivered > 0) {
-      lines.push(
-        `Warning: ${undelivered} order${undelivered === 1 ? " is" : "s are"} not yet marked delivered. They will be auto-marked delivered.`,
-      );
-    }
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     lines.push("This will free the table for new customers.");
     if (!window.confirm(lines.join("\n\n"))) return;
 
@@ -473,7 +423,6 @@ export default function TablesPage() {
     }
   };
 
-<<<<<<< HEAD
   const toggleItemDelivered = async (orderId: number, itemId: number, tableId: number) => {
     // Optimistic UI
     setTables((prev) =>
@@ -499,8 +448,6 @@ export default function TablesPage() {
     }
   };
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const markOrderDelivered = async (orderId: number, tableNumber: number) => {
     // Optimistic UI: keep the order visible, just flip its status to delivered.
     // It stays in the active list until "Close Bill" archives the session.
@@ -696,17 +643,11 @@ export default function TablesPage() {
                 className={`relative overflow-hidden transition-all ${
                   waiterCalls.has(table.id)
                     ? "border-2 border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.45)] bg-amber-500/5 animate-pulse"
-<<<<<<< HEAD
                     : newOrderTables.has(table.id)
                       ? "border-2 border-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.4)] bg-emerald-500/5 animate-pulse"
                       : isExpanded
                         ? "border-purple-500/40"
                         : "hover:border-purple-500/20"
-=======
-                    : isExpanded
-                      ? "border-purple-500/40"
-                      : "hover:border-purple-500/20"
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 }`}
               >
                 {waiterCalls.has(table.id) && (
@@ -732,7 +673,6 @@ export default function TablesPage() {
                 <CardContent className="p-0">
                   {/* Table header - clickable */}
                   <button
-<<<<<<< HEAD
                     onClick={() => {
                       const nextExpanded = isExpanded ? null : table.id;
                       setExpandedTable(nextExpanded);
@@ -744,11 +684,6 @@ export default function TablesPage() {
                         });
                       }
                     }}
-=======
-                    onClick={() =>
-                      setExpandedTable(isExpanded ? null : table.id)
-                    }
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                     className="w-full p-4 text-left hover:bg-white/5 transition-colors"
                   >
                     <div className="flex items-center gap-3">
@@ -756,19 +691,14 @@ export default function TablesPage() {
                         className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${
                           waiterCalls.has(table.id)
                             ? "from-amber-400 to-red-500"
-<<<<<<< HEAD
                             : newOrderTables.has(table.id)
                               ? "from-emerald-400 to-green-600"
                               : getStatusColor(table.status)
-=======
-                            : getStatusColor(table.status)
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                         } flex items-center justify-center shadow-lg flex-shrink-0`}
                       >
                         <span className="text-white text-xl font-bold">
                           {table.number}
                         </span>
-<<<<<<< HEAD
                         {newOrderTables.has(table.id) && !waiterCalls.has(table.id) && (
                           <motion.div
                             className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950 flex items-center justify-center shadow-lg"
@@ -778,8 +708,6 @@ export default function TablesPage() {
                             <Sparkles size={13} className="text-white" />
                           </motion.div>
                         )}
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                         {waiterCalls.has(table.id) && (
                           <motion.div
                             className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-red-500 border-2 border-white dark:border-zinc-950 flex items-center justify-center shadow-lg"
@@ -822,14 +750,11 @@ export default function TablesPage() {
                             <span className="text-xs font-semibold text-purple-400">
                               {formatCurrency(activeTotal)}
                             </span>
-<<<<<<< HEAD
                             {newOrderTables.has(table.id) && (
                               <span className="text-[10px] font-bold text-emerald-400 animate-pulse">
                                 NEW ORDER!
                               </span>
                             )}
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                           </div>
                         )}
                       </div>
@@ -938,14 +863,11 @@ export default function TablesPage() {
                                             ? "delivered"
                                             : order.status}
                                         </Badge>
-<<<<<<< HEAD
                                         {order.source === "tablet" && (
                                           <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-400 border border-blue-500/30">
                                             <Tablet size={10} /> Tablet
                                           </span>
                                         )}
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                                       </div>
                                       <span className="text-sm font-semibold text-purple-400">
                                         {formatCurrency(
@@ -953,7 +875,6 @@ export default function TablesPage() {
                                         )}
                                       </span>
                                     </div>
-<<<<<<< HEAD
                                     <div className="space-y-1.5 mt-1">
                                       {order.items.map((item) => {
                                         const itemName = item.combo?.name?.en ||
@@ -1107,41 +1028,6 @@ export default function TablesPage() {
                                           </div>
                                         );
                                       })}
-=======
-                                    <div className="space-y-1">
-                                      {order.items.map((item) => (
-                                        <div
-                                          key={item.id}
-                                          className="flex justify-between text-xs text-muted-foreground"
-                                        >
-                                          <span>
-                                            {item.quantity}x{" "}
-                                            {item.combo?.name?.en ||
-                                              (item.combo?.name
-                                                ? Object.values(
-                                                    item.combo.name,
-                                                  )[0]
-                                                : item.product?.name?.en ||
-                                                  (item.product?.name
-                                                    ? Object.values(
-                                                        item.product.name,
-                                                      )[0]
-                                                    : "Unknown Item"))}
-                                            {item.combo && (
-                                              <span className="ml-1 text-[8px] font-bold text-amber-500 uppercase tracking-tighter">
-                                                (Combo)
-                                              </span>
-                                            )}
-                                          </span>
-                                          <span>
-                                            {formatCurrency(
-                                              parseFloat(item.price) *
-                                                item.quantity,
-                                            )}
-                                          </span>
-                                        </div>
-                                      ))}
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                                     </div>
                                   </div>
                                 );
@@ -1163,7 +1049,6 @@ export default function TablesPage() {
                             </p>
                           )}
 
-<<<<<<< HEAD
                           {/* Session progress — item-level tracking */}
                           {activeOrders.length > 0 &&
                             (() => {
@@ -1206,33 +1091,6 @@ export default function TablesPage() {
                                         style={{ width: `${(deliveredItems / totalItems) * 100}%` }}
                                       />
                                     </div>
-=======
-                          {/* Session progress */}
-                          {activeOrders.length > 0 &&
-                            (() => {
-                              const delivered = activeOrders.filter(
-                                (o) => o.status === "delivered",
-                              ).length;
-                              const allDelivered =
-                                delivered === activeOrders.length;
-                              return (
-                                <div
-                                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium ${
-                                    allDelivered
-                                      ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                                      : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                                  }`}
-                                >
-                                  <CheckCircle size={14} />
-                                  <span>
-                                    {delivered} / {activeOrders.length}{" "}
-                                    delivered
-                                  </span>
-                                  {allDelivered && (
-                                    <span className="ml-auto text-[10px] uppercase tracking-wider font-bold">
-                                      Ready to close
-                                    </span>
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                                   )}
                                 </div>
                               );
@@ -1254,7 +1112,6 @@ export default function TablesPage() {
                               <QrCode size={14} />
                               QR Code
                             </button>
-<<<<<<< HEAD
                             <button
                               onClick={() => {
                                 setPinEditTable(table);
@@ -1269,8 +1126,6 @@ export default function TablesPage() {
                               <Key size={14} />
                               PIN
                             </button>
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                             {activeOrders.length > 0 &&
                               (() => {
                                 const allDelivered = activeOrders.every(
@@ -1279,7 +1134,6 @@ export default function TablesPage() {
                                 return (
                                   <button
                                     onClick={() => handleCloseBill(table)}
-<<<<<<< HEAD
                                     disabled={!allDelivered}
                                     title={
                                       !allDelivered
@@ -1290,12 +1144,6 @@ export default function TablesPage() {
                                       allDelivered
                                         ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 cursor-pointer"
                                         : "bg-zinc-500/10 text-zinc-400 cursor-not-allowed opacity-50"
-=======
-                                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                                      allDelivered
-                                        ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30"
-                                        : "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                                     }`}
                                   >
                                     <CreditCard size={14} />
@@ -1553,7 +1401,6 @@ export default function TablesPage() {
                                 {formatCurrency(parseFloat(order.total))}
                               </span>
                             </div>
-<<<<<<< HEAD
                             <div className="space-y-1">
                               {order.items.map((item) => {
                                 const isCombo = !!item.combo;
@@ -1601,39 +1448,6 @@ export default function TablesPage() {
                                   </div>
                                 );
                               })}
-=======
-                            <div className="space-y-0.5">
-                              {order.items.map((item) => (
-                                <div
-                                  key={item.id}
-                                  className="flex justify-between text-xs text-muted-foreground"
-                                >
-                                  <span>
-                                    {item.quantity}x{" "}
-                                    {item.combo?.name?.en ||
-                                      (item.combo?.name
-                                        ? Object.values(item.combo.name)[0]
-                                        : item.product?.name?.en ||
-                                          (item.product?.name
-                                            ? Object.values(
-                                                item.product.name,
-                                              )[0]
-                                            : "Unknown Item"))}
-                                    {item.combo && (
-                                      <span className="ml-1 text-[8px] font-bold text-amber-500 uppercase tracking-tighter">
-                                        (Combo)
-                                      </span>
-                                    )}
-                                    {item.isGift && " (Gift)"}
-                                  </span>
-                                  <span className="tabular-nums">
-                                    {formatCurrency(
-                                      parseFloat(item.price) * item.quantity,
-                                    )}
-                                  </span>
-                                </div>
-                              ))}
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                             </div>
                             <p className="text-[10px] text-muted-foreground mt-1.5">
                               {new Date(order.createdAt).toLocaleString()}
@@ -1681,7 +1495,6 @@ export default function TablesPage() {
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500/50"
             />
           </div>
-<<<<<<< HEAD
           <div>
             <label className="text-sm text-muted-foreground mb-1.5 block">
               Tablet PIN (optional)
@@ -1697,8 +1510,6 @@ export default function TablesPage() {
             />
             <p className="text-[10px] text-muted-foreground mt-1">4-6 digits. Set this to enable tablet mode for this table.</p>
           </div>
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           <p className="text-xs text-muted-foreground">
             A unique 8-character Table ID will be generated automatically.
           </p>
@@ -1707,7 +1518,6 @@ export default function TablesPage() {
           </Button>
         </div>
       </Modal>
-<<<<<<< HEAD
 
       {/* PIN Edit Modal */}
       <Modal
@@ -1754,8 +1564,6 @@ export default function TablesPage() {
           </div>
         </div>
       </Modal>
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     </div>
   );
 }

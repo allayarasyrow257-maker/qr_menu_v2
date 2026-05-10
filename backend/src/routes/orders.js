@@ -55,7 +55,6 @@ router.post(
           if (!product) throw new Error(`Product #${item.productId} not found`);
           const itemTotal = parseFloat(product.price) * item.quantity;
           total += itemTotal;
-<<<<<<< HEAD
 
           // Build notes for gift items with receiver table info
           let itemNotes = item.notes || null;
@@ -63,37 +62,25 @@ router.post(
             itemNotes = `Gift to Table ${item.receiverTableNumber || item.receiverTableId}`;
           }
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
+
           return {
             productId: item.productId,
             quantity: item.quantity,
             price: product.price,
-<<<<<<< HEAD
             notes: itemNotes,
-=======
-            notes: item.notes || null,
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
             isGift: item.isGift || false,
           };
         }
       });
 
-<<<<<<< HEAD
       const { sessionId, source } = req.body;
-=======
-      const { sessionId } = req.body;
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 
       const order = await prisma.order.create({
         data: {
           tableId,
           total,
           notes,
-<<<<<<< HEAD
           source: source === 'tablet' ? 'tablet' : 'qr',
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           sessionId: sessionId || null,
           items: { create: orderItems },
         },
@@ -249,7 +236,6 @@ router.put("/:id/status", authenticateToken, async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 // Toggle delivered status for a single order item (admin)
 router.put("/:orderId/items/:itemId/delivered", authenticateToken, async (req, res) => {
   try {
@@ -280,8 +266,7 @@ router.put("/:orderId/items/:itemId/delivered", authenticateToken, async (req, r
   }
 });
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
+
 // Close bill - archive current session's orders for a table (admin).
 // Kept for backward-compat; same behavior as POST /api/tables/:id/close-bill.
 router.post(

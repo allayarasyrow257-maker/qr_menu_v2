@@ -1,6 +1,5 @@
 {
   "name": "Creator",
-<<<<<<< HEAD
   "logo": "/uploads/1778247604024-500468391.png",
   "backgroundColor": "#963678",
   "backgroundColorLight": "#7e4949",
@@ -8,12 +7,4 @@
   "accentColorLight": "#09f162",
   "accentColorDark": "#f2024a",
   "maintenance": false
-=======
-  "logo": "/uploads/1778058381431-432622432.png",
-  "backgroundColor": "#963678",
-  "backgroundColorLight": "#b33737",
-  "backgroundColorDark": "#899abd",
-  "accentColorLight": "#ba7636",
-  "accentColorDark": "#d78989"
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 }

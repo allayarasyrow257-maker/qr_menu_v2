@@ -21,7 +21,6 @@ function CategoryPageContent() {
 
   useTableOrderSync();
 
-<<<<<<< HEAD
   // Prevent browser back to home page
   useEffect(() => {
     const blockBack = () => {
@@ -32,8 +31,6 @@ function CategoryPageContent() {
     return () => window.removeEventListener('popstate', blockBack);
   }, []);
 
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const categoryId = params.id ? parseInt(params.id as string) : null;
 
   useEffect(() => {

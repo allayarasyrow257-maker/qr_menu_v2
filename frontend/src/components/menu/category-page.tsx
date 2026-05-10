@@ -142,7 +142,6 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
         (mounted ? language : 'en') === 'tr' ? 'ürün' : 'items';
 
   const activeBg = theme === 'dark' ? cafeSettings.backgroundColorDark : cafeSettings.backgroundColorLight;
-<<<<<<< HEAD
   const activeAccent = theme === 'dark' ? cafeSettings.accentColorDark : cafeSettings.accentColorLight;
 
   React.useEffect(() => {
@@ -151,8 +150,6 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
     root.style.setProperty('--accent-color', activeAccent);
     return () => { root.style.removeProperty('--accent-color'); };
   }, [activeAccent]);
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 
   if (loading) {
     return (
@@ -193,11 +190,7 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
           {/* Left - Table Indicator */}
           {tableId ? (
             <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-sm">
-<<<<<<< HEAD
               <Utensils size={14} style={{ color: 'var(--accent-color, #f97316)' }} />
-=======
-              <Utensils size={14} className="text-orange-500" />
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               <span className="text-sm font-bold">
                 {tableLabel} {tableId}
               </span>
@@ -303,11 +296,7 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
             animate={{ y: 0, opacity: 1 }}
             className=""
           >
-<<<<<<< HEAD
             <span className="text-xs lg:text-2xl lg:pb-6 font-normal tracking-[0.3em] uppercase" style={{ color: 'var(--accent-color, #f97316)' }}>
-=======
-            <span className="text-xs lg:text-2xl lg:pb-6 font-normal tracking-[0.3em] text-orange-800 dark:text-orange-400 uppercase">
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
               {welcomeLabel}
             </span>
           </motion.div>
@@ -367,13 +356,8 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
                 {/* Bottom overlay content */}
                 <div className="absolute bottom-0 inset-x-0 px-2 pb-2 pt-1 flex items-center gap-2 bg-gradient-to-t dark:from-black/60 from-white/80 dark:to-transparent to-white border-white/20 dark:border-white/10">
                   {/* Icon circle */}
-<<<<<<< HEAD
                   <div className="w-8 h-8 lg:w-10 lg:h-10 md:h-10 md:w-10 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-sm border-[0.2px] flex items-center justify-center shrink-0 shadow-sm" style={{ borderColor: 'color-mix(in srgb, var(--accent-color, #f97316) 40%, transparent)' }}>
                     <Icon size={16} style={{ color: 'var(--accent-color, #f97316)' }} />
-=======
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 md:h-10 md:w-10  rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-sm border border-gray/40 dark:border-orange-400 border-[0.2px] flex items-center justify-center shrink-0 shadow-sm">
-                    <Icon size={16} className="text-orange-500 dark:text-orange-400" />
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                   </div>
 
                   {/* Text */}
@@ -387,13 +371,8 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
                   </div>
 
                   {/* Arrow */}
-<<<<<<< HEAD
                   <div className="w-9 h-9 hidden lg:flex md:flex sm:flex rounded-full bg-white/20 dark:bg-black/40 border-[0.2px] flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors" style={{ borderColor: 'color-mix(in srgb, var(--accent-color, #f97316) 40%, transparent)' }}>
                     <ChevronRight size={16} style={{ color: 'var(--accent-color, #f97316)' }} />
-=======
-                  <div className="w-9 h-9 hidden lg:flex md:flex sm:flex    rounded-full bg-white/20 dark:bg-black/40 border border-gray/30 dark:border-orange-400 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">
-                    <ChevronRight size={16} className="dark:text-orange-400 text-black" />
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                   </div>
                 </div>
               </motion.button>
@@ -404,15 +383,9 @@ export function CategoryPage({ onSelectCategory }: CategoryPageProps) {
 
       {/* Decorative footer line */}
       < footer className="mt-12 flex flex-col items-center" >
-<<<<<<< HEAD
         <div className="flex items-center gap-4" style={{ color: 'color-mix(in srgb, var(--accent-color, #f97316) 30%, transparent)' }}>
           <div className="h-[1px] w-12 bg-current" />
           <Utensils size={16} style={{ color: 'color-mix(in srgb, var(--accent-color, #f97316) 60%, transparent)' }} />
-=======
-        <div className="flex items-center gap-4 text-orange-200 dark:text-orange-900/30">
-          <div className="h-[1px] w-12 bg-current" />
-          <Utensils size={16} className="text-orange-800/60 dark:text-orange-400/60" />
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           <div className="h-[1px] w-12 bg-current" />
         </div>
       </footer >

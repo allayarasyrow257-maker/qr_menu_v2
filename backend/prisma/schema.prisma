@@ -12,10 +12,7 @@ model Table {
   number    Int      @unique
   tableCode String   @unique @default("") // 8-char random code shown to customer
   name      String?
-<<<<<<< HEAD
   tabletPin String?  // 4-6 digit PIN for tablet mode access
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   status    String   @default("available") // available, occupied, reserved
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -81,10 +78,7 @@ model Order {
   status       String      @default("pending") // pending, preparing, ready, delivered, cancelled
   total        Decimal     @db.Decimal(10, 2)
   notes        String?
-<<<<<<< HEAD
   source       String      @default("qr") // qr, tablet
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   sessionId    String?     // Random 8-char session identifier for the customer
   billClosedAt DateTime?   // Set when the bill is closed; orders with NULL belong to the current customer session
   createdAt    DateTime    @default(now())
@@ -95,7 +89,6 @@ model Order {
 }
 
 model OrderItem {
-<<<<<<< HEAD
   id        Int      @id @default(autoincrement())
   orderId   Int
   productId Int?
@@ -106,17 +99,6 @@ model OrderItem {
   isGift    Boolean  @default(false)
   delivered Boolean  @default(false)
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-=======
-  id        Int     @id @default(autoincrement())
-  orderId   Int
-  productId Int?
-  comboId   Int?
-  quantity  Int     @default(1)
-  price     Decimal @db.Decimal(10, 2)
-  notes     String?
-  isGift    Boolean @default(false)
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   product   Product? @relation(fields: [productId], references: [id])
   combo     Combo?   @relation(fields: [comboId], references: [id])
 }

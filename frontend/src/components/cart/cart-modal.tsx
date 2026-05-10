@@ -21,10 +21,7 @@ import { getSocket } from "@/lib/socket";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-<<<<<<< HEAD
 import { useTabletStore } from "@/store/tablet-store";
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 import toast from "react-hot-toast";
 
 interface CartModalProps {
@@ -43,13 +40,9 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
     items,
     updateQuantity,
     removeItem,
-<<<<<<< HEAD
     removeByCartItemId,
     lockItemsAfterOrder,
     clearCart,
-=======
-    lockItemsAfterOrder,
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     markBillClosed,
     acknowledgeClosedBill,
     billClosedAt,
@@ -58,10 +51,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
     sessionId,
     language,
   } = useCartStore();
-<<<<<<< HEAD
   const { isTabletMode } = useTabletStore();
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
   const [submitting, setSubmitting] = React.useState(false);
   const [confirmedOrder, setConfirmedOrder] =
     React.useState<OrderResult | null>(null);
@@ -72,7 +62,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
     setMounted(true);
   }, []);
 
-<<<<<<< HEAD
   const [billCountdown, setBillCountdown] = React.useState<number | null>(null);
 
   // Listen for bill-closed event from admin
@@ -104,27 +93,14 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
         setBillCountdown(null);
         onClose();
       }, 5000);
-=======
-  // Listen for bill-closed event from admin
-  React.useEffect(() => {
-    const socket = getSocket();
-    socket.on("bill-closed", () => {
-      markBillClosed(new Date().toISOString());
-      setConfirmedOrder(null);
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     });
 
     return () => {
       socket.off("bill-closed");
-<<<<<<< HEAD
       if (countdownInterval) clearInterval(countdownInterval);
       if (autoCloseTimer) clearTimeout(autoCloseTimer);
     };
   }, [markBillClosed, acknowledgeClosedBill, onClose]);
-=======
-    };
-  }, [markBillClosed]);
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
 
   const lang = mounted ? language : "en";
 
@@ -282,10 +258,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
             quantity: item.quantity,
             isGift: item.isGift || false,
             receiverTableId: item.receiverTableId || undefined,
-<<<<<<< HEAD
             receiverTableNumber: item.receiverTableNumber || undefined,
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           });
         }
       });
@@ -294,33 +267,21 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
         tableId,
         sessionId,
         items: orderItems,
-<<<<<<< HEAD
         source: isTabletMode ? 'tablet' : 'qr',
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       });
 
       const socket = getSocket();
       socket.emit("new-order", order);
 
-<<<<<<< HEAD
       // Save the local total before clearing cart
-=======
-      // Save the local total before locking items
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       const localTotal = activeItems.reduce(
         (t, i) => t + i.price * i.quantity,
         0,
       );
       setLastOrderTotal(localTotal);
 
-<<<<<<< HEAD
       // Clear cart after order is placed — no "ordered" items shown
       clearCart();
-=======
-      // Lock items instead of clearing cart
-      lockItemsAfterOrder();
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
       setConfirmedOrder(order);
     } catch (error) {
       toast.error("Failed to place order. Please try again.");
@@ -372,7 +333,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
       </div>
       <Button
         onClick={handleAcknowledgeClosedBill}
-<<<<<<< HEAD
         className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white relative overflow-hidden"
       >
         <CheckCircle size={18} className="mr-2" />
@@ -421,52 +381,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
           </>
         )}
       </Button>
-=======
-        className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white"
-      >
-        <CheckCircle size={18} className="mr-2" />
-        {labels.gotIt}
-      </Button>
-    </div>
-  ) : activeItems.length > 0 || orderedItems.length > 0 ? (
-    <div className="space-y-3">
-      <div className="flex justify-between items-center">
-        <span className="text-sm text-muted-foreground">
-          {activeItems.length > 0
-            ? labels.total
-            : `${labels.total} (${labels.ordered})`}
-        </span>
-        <span className="text-2xl font-bold text-gradient">
-          {activeItems.length > 0
-            ? formatCurrency(
-                activeItems.reduce((t, i) => t + i.price * i.quantity, 0),
-              )
-            : formatCurrency(
-                orderedItems.reduce((t, i) => t + i.price * i.quantity, 0),
-              )}
-        </span>
-      </div>
-      {activeItems.length > 0 && (
-        <Button
-          onClick={handleSubmitOrder}
-          disabled={submitting || activeItems.length === 0}
-          className="w-full h-14 text-base font-semibold"
-        >
-          {submitting ? (
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-            />
-          ) : (
-            <>
-              <Sparkles size={18} className="mr-2" />
-              {labels.placeOrder}
-            </>
-          )}
-        </Button>
-      )}
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
     </div>
   ) : null;
 
@@ -559,7 +473,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                       minute: "2-digit",
                     })}
                   </div>
-<<<<<<< HEAD
                   {billCountdown !== null && (
                     <div className="mt-2 flex items-center gap-2">
                       <div className="flex-1 h-1.5 rounded-full bg-emerald-200 dark:bg-emerald-800 overflow-hidden">
@@ -573,8 +486,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                       </span>
                     </div>
                   )}
-=======
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                 </div>
               </div>
             </div>
@@ -648,11 +559,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
               </div>
             )}
           </motion.div>
-<<<<<<< HEAD
         ) : activeItems.length === 0 ? (
-=======
-        ) : activeItems.length === 0 && orderedItems.length === 0 ? (
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           <motion.div key="empty" className="text-center py-16 px-4">
             <div className="w-20 h-20 mx-auto rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center mb-5">
               <ShoppingBag
@@ -748,7 +655,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                           {/* closes top flex row */}
 
                           {/* Bottom row: stepper + delete */}
-<<<<<<< HEAD
                           {item.isGift ? (
                             <div className="flex items-center justify-end mt-2 pt-2 border-t border-pink-200/30 dark:border-pink-500/10">
                               <button
@@ -762,11 +668,6 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                           ) : (
                             <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5 dark:border-white/5">
                               <div className="flex items-center gap-1 bg-zinc-100 dark:bg-white/[0.06] rounded-lg p.0.5">
-=======
-                          {!item.isGift && (
-                            <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5 dark:border-white/5">
-                              <div className="flex items-center gap-1 bg-zinc-100 dark:bg-white/[0.06] rounded-lg p-0.5">
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
                                 <button
                                   onClick={() =>
                                     updateQuantity(
@@ -809,86 +710,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
               </>
             )}
 
-<<<<<<< HEAD
             {/* Ordered items section removed — customer only sees active cart items */}
-=======
-            {/* Ordered Items (Locked) */}
-            {orderedItems.length > 0 && (
-              <>
-                <div className="flex items-center gap-2 pt-2">
-                  <span className="text-xs font-medium text-green-600 dark:text-green-400">
-                    ✓{" "}
-                    {orderedItems.reduce((sum, item) => sum + item.quantity, 0)}{" "}
-                    {labels.ordered}
-                  </span>
-                  <div className="flex-1 h-px bg-green-200 dark:bg-green-500/20" />
-                </div>
-
-                <div className="space-y-2 max-h-[30vh] overflow-y-auto pr-1">
-                  <AnimatePresence initial={false}>
-                    {orderedItems.map((item, index) => (
-                      <motion.div
-                        key={item.cartItemId}
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                      >
-                        <div
-                          className={`p-3 rounded-xl border opacity-75 ${
-                            item.isCombo || item.comboId
-                              ? "bg-amber-50 dark:bg-amber-500/5 border-amber-200 dark:border-amber-500/20"
-                              : "bg-green-50 dark:bg-green-500/5 border-green-200 dark:border-green-500/20"
-                          }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-zinc-100 dark:bg-white/5">
-                              {item.image ? (
-                                <img
-                                  src={getImageUrl(item.image)}
-                                  alt=""
-                                  className="w-full h-full object-cover"
-                                />
-                              ) : (
-                                <div className="w-full h-full flex items-center justify-center">
-                                  <ShoppingBag
-                                    size={16}
-                                    className="text-zinc-300 dark:text-zinc-600"
-                                  />
-                                </div>
-                              )}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-medium text-xs truncate">
-                                {getLocalizedName(item.name, language)}
-                              </p>
-                              {(item.isCombo || item.comboId) && (
-                                <Badge className="mt-1 bg-amber-100 text-amber-700 hover:bg-amber-200 dark:bg-amber-500/20 dark:text-amber-400 border-none text-[8px] px-1.5 py-0">
-                                  Combo
-                                </Badge>
-                              )}
-                              <p
-                                className={`text-xs font-semibold mt-0.5 ${
-                                  item.isCombo || item.comboId
-                                    ? "text-amber-600 dark:text-amber-400"
-                                    : "text-green-600 dark:text-green-400"
-                                }`}
-                              >
-                                {formatCurrency(item.price * item.quantity)}
-                              </p>
-                            </div>
-                            <span className="text-[10px] font-bold px-2 py-1 rounded-full bg-green-200 dark:bg-green-500/30 text-green-700 dark:text-green-300 shrink-0">
-                              ×{item.quantity}
-                            </span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-                </div>
-              </>
-            )}
->>>>>>> 8927fdd41df3b5b094ff22db87ad20aeb3d376c2
           </motion.div>
         )}
       </AnimatePresence>
